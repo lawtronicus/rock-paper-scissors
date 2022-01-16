@@ -17,6 +17,7 @@ const computerPlay = function() {
 
 // get player selection
 
+/*
 const playerSelection = function () {
     let playerChoice = window.prompt("Make your selection! ").toLowerCase();
     if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
@@ -26,20 +27,43 @@ const playerSelection = function () {
         return playerSelection();
     }
 };
+*/
+
+/* the function below is no longer in use
+const playerSelection = function () {
+    let playerChoice = window.prompt("Make your selection! ").toLowerCase();
+    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+        return playerChoice;
+    } else {
+        console.log("Sorry, I did not recognize that choice. Let's try again.");
+        return playerSelection();
+    }
+};
+*/
 
 // player a round and declare winner
 
 const round = function (computer, player) {
-    computerWeapon = computer();
-    playerWeapon = player();
+    // set variables
+    const computerWeapon = computer();
+    const playerWeapon = player.toLowerCase();
+    const computerDisplay = document.querySelector('.computerChoice');
+    const playerDisplay = document.querySelector('.playerChoice');
+    const result = document.querySelector('.result')
+
+    // display selections
+    computerDisplay.textContent = computerWeapon;
+    playerDisplay.textContent = playerWeapon;
+
+    // analyze and display results
     if (computerWeapon == playerWeapon) {
-        console.log(`You chose ${playerWeapon} and the computer chose ${computerWeapon}! It's a tie!`);
+        result.textContent = "It's a tie!"
         return([0,0]);
     } else if ((computerWeapon === "rock" && playerWeapon === "scissors") || (computerWeapon === "scissors" && playerWeapon === "paper") || (computerWeapon === "paper" && playerWeapon === "rock")) {
-        console.log(`You chose ${playerWeapon} and the computer chose ${computerWeapon}! You lose!`)
+        result.textContent = "You lose!"
         return([0,1]);
     } else {
-        console.log(`You chose ${playerWeapon} and the computer chose ${computerWeapon}! You win!`)
+        result.textContent = "You win!"
         return([1,0]);
     }
 };
@@ -77,4 +101,14 @@ const game = function (roundNumber, computerFunc, playerFunc) {
     }
 };
 
-game(5,computerPlay,playerSelection)
+/* game(5,computerPlay,playerSelection) */
+
+// Play round with button selection
+
+// set variables
+const weaponButtons = document.querySelectorAll(`.weapon`);
+console.log(weaponButtons);
+
+
+// add event listener to buttons
+weaponButtons.forEach(button => button.addEventListener('click', () => round(computerPlay, button.textContent)));
