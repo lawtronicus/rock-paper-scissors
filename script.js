@@ -6,9 +6,9 @@ function game() {
 
     //add event listeners
     addButtonListeners = function () {
-        const rock = document.querySelector('.rock');
-        const paper = document.querySelector('.paper')
-        const scissors = document.querySelector('.scissors');
+        const rock = document.querySelector('.rock-container');
+        const paper = document.querySelector('.paper-container')
+        const scissors = document.querySelector('.scissors-container');
     
         rock.addEventListener('click', round);
         paper.addEventListener('click', round);
@@ -16,9 +16,9 @@ function game() {
     };
 
     removeButtonListeners = function () {
-        const rock = document.querySelector('.rock');
-        const paper = document.querySelector('.paper')
-        const scissors = document.querySelector('.scissors');
+        const rock = document.querySelector('.rock-container');
+        const paper = document.querySelector('.paper-container')
+        const scissors = document.querySelector('.scissors-container');
     
         rock.removeEventListener('click', round);
         paper.removeEventListener('click', round);
@@ -32,18 +32,6 @@ function game() {
         playerScore.textContent = parseInt(playerScore.textContent) + score1;
         computerScore.textContent = parseInt(computerScore.textContent) + score2;
     };
-
-    // display winner
-    const displayWinner = function () {
-        const playerScore = document.querySelector('.playerScore').textContent;
-        const computerScore = document.querySelector('.computerScore').textContent;
-        const result = document.querySelector('.result');
-        if (parseInt(playerScore) > parseInt(computerScore)) {
-            result.textContent = "YOU WIN!!!";
-        } else {
-            result.textContent = "You Lose!!!";
-        }
-    }
 
     // play a round of rock paper scissors
     const round = function () {
@@ -64,6 +52,61 @@ function game() {
             }
         };
 
+        // display selections
+        const displaySelections = function (playerChoice, computerChoice) {
+            const computerDisplay = document.querySelector('.computerChoice');
+            const playerDisplay = document.querySelector('.playerChoice');
+            rock = "/images/rock.svg";
+            paper = "/images/toilet-paper.svg";
+            scissors = "/images/scissors.svg";
+
+            switch (playerChoice) {
+                case 'rock':
+                    playerDisplay.src = rock;
+                    break;
+                case 'paper': 
+                    playerDisplay.src = paper;
+                    break;
+                default:
+                    playerDisplay.src = scissors;
+            }
+
+            switch (computerChoice) {
+                case 'rock':
+                    computerDisplay.src = rock;
+                    break;
+                case 'paper': 
+                    computerDisplay.src = paper;
+                    break;
+                default:
+                    computerDisplay.src = scissors;
+            }
+        }
+
+        // display winner
+        const displayWinner = function () {
+            const playerScore = document.querySelector('.playerScore').textContent;
+            const computerScore = document.querySelector('.computerScore').textContent;
+            const roundResult = document.querySelector('.result');
+            const you = document.querySelector('.you');
+            const win = document.querySelector('.win');
+            const lose = document.querySelector('.lose');
+            //remove "fight"
+
+            const fight = document.querySelector('.fight');
+            fight.style.display = "none";
+            roundResult.textContent = "";
+
+            if (parseInt(playerScore) > parseInt(computerScore)) {
+                you.style.display = "contents";
+                win.style.display = "contents";
+
+            } else {
+                you.style.display = "contents";
+                lose.style.display = "contents";
+            }
+        };
+
         // reset game if play again button is clicked
         const resetGame = function () {
             const playerScore = document.querySelector('.playerScore');
@@ -71,9 +114,29 @@ function game() {
             const playerChoice = document.querySelector('.playerChoice');
             const computerChoice = document.querySelector('.computerChoice');
             const result = document.querySelector('.result');
-            const playAgainBtn = document.querySelector(`.play-again`);
+            const fight = document.querySelector('.fight');
+            const you = document.querySelector('.you');
+            const win = document.querySelector('.win');
+            const lose = document.querySelector('.lose');
+            const playerWeaponImg = document.querySelector('.playerChoice');
+            const computerWeaponImg = document.querySelector('.computerChoice')
+            const playAgain = document.querySelector('.play-again');
+            const chooseYourWeapon = document.querySelector('.footer-text');
 
-            playAgainBtn.style.visibility = 'hidden';
+            // bring back 'fight'
+            you.style.display = 'none';
+            win.style.display = 'none';
+            lose.style.display = 'none';
+            fight.style.display = 'contents';
+            
+            // remove play again
+            playAgain.style.display = 'none';
+
+            // bring back choose your weapon
+            chooseYourWeapon.style.display = "flex";
+
+            playerWeaponImg.src = "/images/question-mark.svg"
+            computerWeaponImg.src = "/images/question-mark.svg"
             playerScore.textContent = '0';
             computerScore.textContent = '0';
             playerChoice.textContent = '';
@@ -88,7 +151,10 @@ function game() {
         // offer to play again once final score is reached
         const playAgain = function () {
             let playAgainBtn = document.querySelector('.play-again');
-            playAgainBtn.style.visibility = "visible";
+            let chooseYourWeapon = document.querySelector('.footer-text');
+
+            chooseYourWeapon.style.display = 'none';
+            playAgainBtn.style.display = "flex";
             removeButtonListeners();
             playAgainBtn.addEventListener('click', resetGame);
         };
@@ -105,14 +171,10 @@ function game() {
 
         // set variables
         const computerWeapon = computerPlay();
-        const playerWeapon = this.textContent.toLowerCase();
-        const computerDisplay = document.querySelector('.computerChoice');
-        const playerDisplay = document.querySelector('.playerChoice');
+        const playerWeapon = this.classList[1];
         const result = document.querySelector('.result')
-    
-        // display selections
-        computerDisplay.textContent = computerWeapon;
-        playerDisplay.textContent = playerWeapon;
+
+        displaySelections(playerWeapon, computerWeapon);
         
         // analyze and display results
         if (computerWeapon == playerWeapon) {

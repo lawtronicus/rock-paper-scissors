@@ -5,34 +5,47 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Mochiy Pop One' rel='stylesheet'>
         <title>Document</title>
         <script src="script.js" defer></script>
     </head>
     <body>
-        <header>
-            <h1>Player Score: <span class="playerScore">0</span></h1>
-            <h1>Computer Score: <span class="computerScore">0</span></h1>
-        </header>
+        <header><span class="rockText">Rock,&nbsp;</span><span class="paperText">Paper,&nbsp;</span><span class="scissorsText"> Scissors!</span></header>
+        <section>
+            <p>Player Score: <span class="playerScore">0</span></p>
+            <p class="divider">||</p>
+            <p>Computer Score: <span class="computerScore">0</span></p>
+        </section>
         <main>
-            <div>
-                <h2>You chose:</h2>
-                <div class="playerChoice"></div>
+            <img src="/images/question-mark.svg" alt="weapon image" class="playerChoice weaponImg">
+            <div class="update">
+                <h1 class="fight">FIGHT!</h1>
+                <h2 class="you">You<h2>
+                <h1 class="win">Win!!!</h1>
+                <h1 class="lose">Lose!!!</h1>
             </div>
-            <div>
-                <h2>The computer chose:</h2>
-                <div class="computerChoice"></div>
-            </div>
+            <img src="/images/question-mark.svg" alt="weapon image" class="computerChoice weaponImg">
         </main>
         <summary>
             <h1 class="result"></h1>
         </summary>
         <footer>
-            <h1 class="weaponText">Choose your weapon!</h1>
-            <button class="play-again">Play Again</button>
+            <div class="footer-text">
+                <p class="weaponText">Choose your weapon!</p>
+            </div>
+            <div class="play-again">
+                <p>Play Again</p>     
+            </div>
             <div class="weapons">
-                <button class="weapon rock">Rock</button>
-                <button class="weapon paper">Paper</button>
-                <button class="weapon scissors">Scissors</button>
+                <div class="rock-container rock">
+                    <img class="weapon" src="images/rock.svg" alt="rock">
+                </div>
+                <div class="paper-container paper">
+                    <img class="weapon" src="images/toilet-paper.svg" alt="paper">
+                </div>
+                <div class="scissors-container scissors">
+                    <img class="weapon" src="images/scissors.svg" alt="scissors">
+                </div>
             </div>
         </footer>
     </body>
