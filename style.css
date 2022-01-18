@@ -16,6 +16,7 @@ body {
     height: 95.5%; 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     background-color: #3B077E;
     color: #EFE7BB;
     font-family: 'Mochiy Pop One', Helvetica, sans-serif;
@@ -27,7 +28,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: .5em;
+    padding: 1.5em .5em .5em .5em;
     font-size: 32px;
     font-family: 'Mochiy Pop One';
     background-color: #270554;
@@ -48,12 +49,14 @@ header {
 section {
     flex: 0;
     height: 3em;
+    width: 50%;
     display: flex;
+    align-self: center;
     justify-content: space-around;
     align-items: center;
     background-color: #EFE7BB;
     color: #3B077E;
-    margin: 2em 10em 1em 10em;
+    margin: 1em 10em 1em 10em;
     border-radius: 1em;
     border: 4px solid #3B077E;
     box-shadow:0 0 0 5px #EFE7BB;
@@ -83,7 +86,7 @@ main {
 }
 
 .weaponImg {
-    width: 12em;
+    width: 10em;
     height: auto;
     filter: drop-shadow(8px 8px 2px rgba(0, 0, 0, 0.4));
     margin: 0 3em;
@@ -160,7 +163,7 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 1em 2em;
-    margin: 1em;
+    margin: 2em;
 }
 
 .weapons div:active{
@@ -189,6 +192,15 @@ footer {
     background-color: #EA4A71;
     border-radius: 3em;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.bottom {
+    background-color: #270554;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 0;
+    font-family: 'Lobster';
 }
 
 /* end footer styling */
