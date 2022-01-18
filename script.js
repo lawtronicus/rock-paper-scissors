@@ -56,9 +56,9 @@ function game() {
         const displaySelections = function (playerChoice, computerChoice) {
             const computerDisplay = document.querySelector('.computerChoice');
             const playerDisplay = document.querySelector('.playerChoice');
-            rock = "/images/rock.svg";
-            paper = "/images/toilet-paper.svg";
-            scissors = "/images/scissors.svg";
+            rock = "images/rock.svg";
+            paper = "images/toilet-paper.svg";
+            scissors = "images/scissors.svg";
 
             switch (playerChoice) {
                 case 'rock':
@@ -135,8 +135,8 @@ function game() {
             // bring back choose your weapon
             chooseYourWeapon.style.display = "flex";
 
-            playerWeaponImg.src = "/images/question-mark.svg"
-            computerWeaponImg.src = "/images/question-mark.svg"
+            playerWeaponImg.src = "images/question-mark.svg"
+            computerWeaponImg.src = "images/question-mark.svg"
             playerScore.textContent = '0';
             computerScore.textContent = '0';
             playerChoice.textContent = '';
